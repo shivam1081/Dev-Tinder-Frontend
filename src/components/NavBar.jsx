@@ -8,7 +8,7 @@ const NavBar = () => {
         <a className="btn btn-ghost text-xl">DevTinder🧑‍💻❤️☕</a>
       </div>
       {user && (
-        <div className="flex gap-2 flex items-center">
+        <div className="flex gap-2 items-center">
           <div>Welcome, {user?.firstName}</div>
           <div className="dropdown dropdown-end mx-5">
             <div

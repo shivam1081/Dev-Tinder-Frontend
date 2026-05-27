@@ -4,13 +4,34 @@
 
 # Web Design :-
 
-Library Used :- Daisy UI
-CSS:- Tailwind
-Install tailwind :- https://tailwindcss.com/docs/installation/using-vite
-Install Daisy UI :- https://daisyui.com/docs/install/
-Install Axios :- https://www.npmjs.com/package/axios
-Install Cors Moddleware (At the Backend Layer) :- https://expressjs.com/en/resources/
-Install Redux in the application :- npm install @reduxjs/toolkit react redux
+## UI & Styling
+
+- **Library Used**: DaisyUI
+- **CSS Framework**: Tailwind CSS
+- **Install Tailwind**: `npm install tailwindcss @tailwindcss/vite`
+- **Install DaisyUI**: `npm install -D daisyui@latest`
+
+## HTTP Client & Routing
+
+- **Install Axios**: `npm install axios`
+- **Install React Router**: `npm install react-router-dom`
+
+## State Management
+
+- **Install Redux Toolkit & React Redux**: `npm install @reduxjs/toolkit react-redux redux`
+
+## Backend Middleware
+
+- **Install CORS Middleware (Backend)**: Refer to https://expressjs.com/en/resources/middleware/cors/
+
+## Build Tool
+
+- **Build Tool**: Vite (Pre-configured)
+
+## Development Tools
+
+- **ESLint**: For code linting
+- **React Plugins**: Vite React plugin for development
 
 # Routing in this Project (React Rounter)
 

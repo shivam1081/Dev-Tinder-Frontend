@@ -4,6 +4,7 @@ import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../utils/userSlice";
+import { MALE_DEFAULT_PHOTO, FEMALE_DEFAULT_PHOTO } from "../utils/constants";
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
@@ -27,6 +28,13 @@ const NavBar = () => {
       console.log(err);
     }
   };
+
+  const getDefaultPhoto = () => {
+    if (user?.photoUrl) return user?.photoUrl;
+    return user?.gender?.toLowerCase() === "male"
+      ? MALE_DEFAULT_PHOTO
+      : FEMALE_DEFAULT_PHOTO;
+  };
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
@@ -44,13 +52,7 @@ const NavBar = () => {
               className="btn btn-ghost btn-circle avatar "
             >
               <div className="w-10 rounded-full">
-                <img
-                  alt="User Photo"
-                  src={
-                    user?.photoUrl ||
-                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  }
-                />
+                <img alt="User Photo" src={getDefaultPhoto()} />
               </div>
             </div>
             <ul
@@ -58,7 +60,7 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <Link to="/profile" lassName="justify-between">
+                <Link to="/profile" className="justify-between">
                   Profile
                   <span className="badge">New</span>
                 </Link>

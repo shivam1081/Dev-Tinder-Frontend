@@ -1,12 +1,26 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addRequestData } from "../utils/requestSlice";
+import { addRequestData, removeParticularRequest } from "../utils/requestSlice";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 
 const Requests = () => {
   const requests = useSelector((store) => store.request);
   const dispatch = useDispatch();
+
+  const reviewRequest = async (action, requestId) => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/request/review/" + action + "/" + requestId,
+        {},
+        { withCredentials: true },
+      );
+      dispatch(removeParticularRequest(requestId));
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const fetchRequests = async () => {
     try {
       const res = await axios.get(BASE_URL + "/user/requests/received", {
@@ -43,12 +57,12 @@ const Requests = () => {
         <h1 className="text-center text-2xl font-bold mb-4 flex justify-center my-10">
           Requests Received {`(${requests?.length})`}
         </h1>
-        <div className="flex flex-col items-center gap-6 ">
+        <div className="flex flex-col items-center gap-4 ">
           {requests?.length > 0 &&
             requests.map((request) => (
               <div
                 key={request?.fromUserId?._id}
-                className="card card-dash bg-base-100 w-full max-w-4xl mx-auto my-4 flex-row items-center gap-6 p-4 shadow-xl"
+                className="card card-dash bg-base-100 w-full max-w-4xl mx-auto my-4 flex-row items-center gap-6 px-5 shadow-xl"
               >
                 <img
                   className="rounded-full w-32 h-32 object-cover"
@@ -63,9 +77,18 @@ const Requests = () => {
                   <p>{`${request?.fromUserId?.age} years old | Gender: ${request?.fromUserId?.gender} `}</p>
                   <p>{request?.fromUserId?.about}</p>
                 </div>
-                <div className="flex flex-col items-center my-10 gap-5 ">
-                  <button className="btn btn-primary w-40 h-10 ">Reject</button>
-                  <button className="btn btn-secondary w-40 h-10 ">
+
+                <div className="flex flex-col items-center my-10 gap-3 ">
+                  <button
+                    className="btn btn-primary w-40 h-10 "
+                    onClick={() => reviewRequest("rejected", request._id)}
+                  >
+                    Reject
+                  </button>
+                  <button
+                    className="btn btn-secondary w-40 h-10 "
+                    onClick={() => reviewRequest("accepted", request._id)}
+                  >
                     Accept
                   </button>
                 </div>

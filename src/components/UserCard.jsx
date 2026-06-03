@@ -23,10 +23,10 @@ const UserCard = ({ user }) => {
           <p>{`${age} years old | Gender: ${gender} `}</p>
           <p>{about}</p>
           <div className="card-actions justify-center my-4">
-            <button className="btn w-28 bg-purple-500 hover:bg-purple-600 border-purple-500">
+            <button className="btn w-full bg-purple-500 hover:bg-purple-600 border-purple-500">
               Ignore
             </button>
-            <button className="btn w-28 bg-green-700 hover:bg-green-800 border-green-700">
+            <button className="btn w-full bg-green-700 hover:bg-green-800 border-green-700">
               Interested
             </button>
           </div>

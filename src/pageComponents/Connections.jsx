@@ -26,12 +26,15 @@ const Connections = () => {
   return (
     <div>
       <h1 className="text-center text-2xl font-bold mb-4 flex justify-center my-10">
-              Your Connections {`(${connections?.length})`}
+        Your Connections {`(${connections?.length})`}
       </h1>
       <div className="flex flex-col items-center gap-6">
         {connections?.length > 0 &&
           connections.map((connection) => (
-            <div className="card card-dash bg-base-100 w-full max-w-3xl mx-auto my-4 flex-row items-center gap-6 p-4 shadow-xl">
+            <div
+              key={connection?._id}
+              className="card card-dash bg-base-100 w-full max-w-3xl mx-auto my-4 flex-row items-center gap-6 p-4 shadow-xl"
+            >
               <img
                 className="rounded-full w-32 h-32 object-cover"
                 alt="photo"

@@ -4,6 +4,10 @@ import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../utils/userSlice";
+import { removeFeed } from "../utils/feedSlice";
+import { removeRequestData } from "../utils/requestSlice";
+import { removeConnectionData } from "../utils/connectionSlice";
+
 import { MALE_DEFAULT_PHOTO, FEMALE_DEFAULT_PHOTO } from "../utils/constants";
 
 const NavBar = () => {
@@ -22,6 +26,9 @@ const NavBar = () => {
       );
       if (res?.status === 200) {
         dispatch(removeUser());
+        dispatch(removeFeed());
+        dispatch(removeRequestData());
+        dispatch(removeConnectionData());
         navigate("/login");
       }
     } catch (err) {

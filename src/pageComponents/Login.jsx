@@ -12,6 +12,7 @@ const Login = () => {
   const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
   const [isLoginForm, setIsLoginForm] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -65,6 +66,15 @@ const Login = () => {
     }
   };
 
+  const clearFields = () => {
+    setEmailId("");
+    setPassword("");
+    setFirstName("");
+    setLastName("");
+    setError("");
+    setShowPassword(false);
+  };
+
   return (
     <div className="flex justify-center items-center my-10">
       <div className="card card-border bg-base-300 w-96 shadow-xlßß">
@@ -87,13 +97,25 @@ const Login = () => {
           <div>
             <fieldset className="fieldset">
               <legend className="fieldset-legend">Password</legend>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="input"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="input  pr-14"
+                />
+                {password && (
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-8 top-1/2 transform -translate-y-1/2 text-xs font-semibold text-gray-400 hover:text-gray-200 cursor-pointer"
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                )}
+              </div>
             </fieldset>
           </div>
 
@@ -135,7 +157,13 @@ const Login = () => {
             >
               {isLoginForm ? "Login" : "Signup"}
             </button>
-            <p className="link" onClick={() => setIsLoginForm(!isLoginForm)}>
+            <p
+              className="link"
+              onClick={() => {
+                setIsLoginForm(!isLoginForm);
+                clearFields();
+              }}
+            >
               {isLoginForm
                 ? "Don't have an account? Signup Here"
                 : "Already have an account? Login Here"}

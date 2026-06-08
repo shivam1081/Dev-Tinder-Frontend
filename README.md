@@ -75,3 +75,11 @@
   - Configurtion in the cors midleaware as mentioned above
   - Then allow the withCredentials in the axios in the frontend application.
     If we dont do this then token will not be send with the api calls.
+
+# Deployment Notes 
+
+We will be using the manual deployment process
+
+
+
+
